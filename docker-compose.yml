@@ -7,16 +7,16 @@ services:
     ports:
       - "8081:80"
     environment:
-      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_HOST: bd_wp:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress_password
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - ./wordpress:/var/www/html
 
-  db:
+  bd_wp:
     image: mysql:5.7
-    container_name: wordpress_db
+    container_name: bd_wp
     platform: linux/amd64  
     restart: always
     environment:
