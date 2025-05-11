@@ -13,6 +13,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - ./wordpress:/var/www/html
+    command: /bin/bash -c "echo 'ServerName localhost' >> /etc/apache2/apache2.conf && apache2-foreground"
 
   bd_wp:
     image: mysql:5.7
