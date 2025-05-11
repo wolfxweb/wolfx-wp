@@ -1,0 +1,139 @@
+{
+    "nodes": [
+      {
+        "parameters": {
+          "path": "whatsapp-inbound",
+          "method": "POST",
+          "responseMode": "lastNode"
+        },
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1,
+        "position": [200, 300]
+      },
+      {
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "numero_usuario",
+                "value": "={{$json[\"body\"][\"number\"]}}"
+              },
+              {
+                "name": "mensagem_usuario",
+                "value": "={{$json[\"body\"][\"message\"]}}"
+              },
+              {
+                "name": "servicos",
+                "value": "1. Desenvolvimento de sistemas sob demanda: sistemas personalizados com foco em usabilidade e escalabilidade.\n2. Automação e integrações: integração de sistemas para maior eficiência.\n3. Criação de sites e landing pages: design responsivo, SEO otimizado, alta performance.\n4. Soluções com Inteligência Artificial: machine learning, análise preditiva, automação inteligente.\n5. Segurança e Compliance: LGPD, GDPR, auditoria e proteção de dados."
+              }
+            ]
+          }
+        },
+        "name": "Set Dados",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 2,
+        "position": [400, 300]
+      },
+      {
+        "parameters": {
+          "authentication": "headerAuth",
+          "url": "https://api.openai.com/v1/chat/completions",
+          "method": "POST",
+          "responseFormat": "json",
+          "jsonParameters": true,
+          "options": {},
+          "bodyParametersJson": "={\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"Você é o assistente da empresa Wolfx. Os serviços oferecidos são:\\n\\n{{$json[\"servicos\"]}}\\n\\nResponda dúvidas dos usuários sobre esses serviços de forma cordial e objetiva.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"{{$json[\"mensagem_usuario\"]}}\"\n    }\n  ]\n}",
+          "headerParametersJson": "{\n  \"Authorization\": \"Bearer SUA_CHAVE_OPENAI\",\n  \"Content-Type\": \"application/json\"\n}"
+        },
+        "name": "ChatGPT",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 2,
+        "position": [600, 300],
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "sua_credencial_openai",
+            "name": "OpenAI Header Auth"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "resposta",
+                "value": "={{$json[\"choices\"][0][\"message\"][\"content\"]}}"
+              }
+            ]
+          }
+        },
+        "name": "Extrair Resposta",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 2,
+        "position": [800, 300]
+      },
+      {
+        "parameters": {
+          "authentication": "none",
+          "url": "https://wa.your-evolution-api.com/message/send",
+          "method": "POST",
+          "responseFormat": "json",
+          "jsonParameters": true,
+          "bodyParametersJson": "={\n  \"number\": \"{{$json[\"numero_usuario\"]}}\",\n  \"message\": \"{{$json[\"resposta\"]}}\"\n}",
+          "headerParametersJson": "{\n  \"apikey\": \"SUA_CHAVE_EVOLUTION\"\n}"
+        },
+        "name": "Enviar WhatsApp",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 2,
+        "position": [1000, 300]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Set Dados",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Dados": {
+        "main": [
+          [
+            {
+              "node": "ChatGPT",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "ChatGPT": {
+        "main": [
+          [
+            {
+              "node": "Extrair Resposta",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extrair Resposta": {
+        "main": [
+          [
+            {
+              "node": "Enviar WhatsApp",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+  
