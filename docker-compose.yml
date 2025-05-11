@@ -5,7 +5,7 @@ services:
     platform: linux/amd64 
     restart: always
     ports:
-      - "80:80"
+      - "8080:80"
     environment:
       WORDPRESS_DB_HOST: bd_wp:3306
       WORDPRESS_DB_USER: wordpress
