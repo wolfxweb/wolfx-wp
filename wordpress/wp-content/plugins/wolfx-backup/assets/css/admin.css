@@ -1,0 +1,148 @@
+.wolfx-backup-section {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.wolfx-backup-section h2 {
+    margin-top: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.wolfx-backup-actions {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.wolfx-backup-action {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.wolfx-backup-action h2 {
+    margin-top: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Estilo para o input de arquivo */
+.wolfx-backup-action input[type="file"] {
+    display: none;
+}
+
+.wolfx-backup-action .file-input-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.wolfx-backup-action .file-input-label {
+    display: inline-block;
+    padding: 0 20px;
+    height: 30px;
+    line-height: 28px;
+    background: #f0f0f1;
+    border: 1px solid #2271b1;
+    border-radius: 3px;
+    color: #2271b1;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.wolfx-backup-action .file-input-label:hover {
+    background: #f6f7f7;
+    border-color: #0a4b78;
+    color: #0a4b78;
+}
+
+.wolfx-backup-action .file-name {
+    flex: 1;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 28px;
+    background: #f0f0f1;
+    border: 1px solid #8c8f94;
+    border-radius: 3px;
+    color: #50575e;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#wolfx-backup-progress,
+#wolfx-import-progress {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f1;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    width: 0;
+    height: 100%;
+    background-color: #2271b1;
+    transition: width 0.3s ease-in-out;
+}
+
+.status-message {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+#wolfx-backup-list {
+    margin-top: 20px;
+}
+
+#wolfx-backup-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#wolfx-backup-list th,
+#wolfx-backup-list td {
+    padding: 8px;
+    text-align: left;
+}
+
+#wolfx-backup-list th {
+    background-color: #f0f0f1;
+}
+
+#wolfx-backup-list .button {
+    margin-right: 5px;
+}
+
+.restore-backup {
+    background-color: #d63638;
+    color: #fff;
+    border-color: #d63638;
+}
+
+.restore-backup:hover {
+    background-color: #b32d2e;
+    border-color: #b32d2e;
+    color: #fff;
+}
+
+/* Responsive layout */
+@media screen and (max-width: 782px) {
+    .wolfx-backup-actions {
+        flex-direction: column;
+    }
+} 
