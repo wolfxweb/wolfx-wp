@@ -13,10 +13,10 @@ RUN apt-get update && apt-get install -y \
 
 # Configurações de PHP para melhor performance
 RUN { \
-    echo 'memory_limit = 256M'; \
-    echo 'upload_max_filesize = 64M'; \
-    echo 'post_max_size = 64M'; \
-    echo 'max_execution_time = 300'; \
+    echo 'memory_limit = 512M'; \
+    echo 'upload_max_filesize = 256M'; \
+    echo 'post_max_size = 256M'; \
+    echo 'max_execution_time = 600'; \
     echo 'max_input_vars = 3000'; \
 } > /usr/local/etc/php/conf.d/custom.ini
 
