@@ -4,32 +4,48 @@
  */
 ?>
 
-    <footer id="colophon" class="site-footer">
-        <div class="container">
-            <div class="footer-widgets">
-                <?php if (is_active_sidebar('footer-1')) : ?>
-                    <div class="footer-widget-area">
-                        <?php dynamic_sidebar('footer-1'); ?>
+    <footer id="colophon" class="site-footer bg-primary text-white mt-auto">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="footer-widget">
+                        <h3 class="h4 mb-3">wolfx</h3>
+                        <p class="text-white-50">
+                            <?php bloginfo('description'); ?>
+                        </p>
                     </div>
-                <?php endif; ?>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-widget">
+                        <h3 class="h4 mb-3"><?php esc_html_e('Quick Links', 'wolfx-wp'); ?></h3>
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'footer',
+                            'menu_class'     => 'list-unstyled',
+                            'container'      => false,
+                            'fallback_cb'    => '__return_false',
+                            'depth'          => 1,
+                            'link_before'    => '<span class="text-white-50">',
+                            'link_after'     => '</span>',
+                        ));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-widget">
+                        <h3 class="h4 mb-3"><?php esc_html_e('Contact', 'wolfx-wp'); ?></h3>
+                        <p class="text-white-50">
+                            <?php esc_html_e('Email: contact@example.com', 'wolfx-wp'); ?><br>
+                            <?php esc_html_e('Phone: (123) 456-7890', 'wolfx-wp'); ?>
+                        </p>
+                    </div>
+                </div>
             </div>
-
-            <nav class="footer-navigation">
-                <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'footer',
-                    'menu_id'        => 'footer-menu',
-                    'container'      => false,
-                    'depth'          => 1,
-                ));
-                ?>
-            </nav>
-
-            <div class="site-info">
-                <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. <?php esc_html_e('All rights reserved.', 'wolfx-wp'); ?></p>
-            </div><!-- .site-info -->
+            <div class="border-top border-secondary mt-4 pt-4 text-center text-white-50">
+                <p class="mb-0">&copy; <?php echo date('Y'); ?> wolfx. <?php esc_html_e('All rights reserved.', 'wolfx-wp'); ?></p>
+            </div>
         </div>
-    </footer><!-- #colophon -->
+    </footer>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

@@ -1,14 +1,16 @@
 /*
 Theme Name: WolfX WP
-Theme URI: https://github.com/yourusername/wolfx-wp
-Author: Your Name
-Author URI: https://yourwebsite.com
-Description: A modern WordPress theme with integrated blog functionality
+Theme URI: https://github.com/wolfx/wolfx-wp
+Author: WolfX
+Author URI: https://github.com/wolfx
+Description: A modern WordPress theme built with Bootstrap 5.
 Version: 1.0.0
+Requires at least: 5.0
+Tested up to: 6.4
+Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: wolfx-wp
-Tags: blog, custom-background, custom-colors, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 */
 
 /* Reset and base styles */
@@ -36,6 +38,8 @@ body {
     padding: 2rem 0;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
 }
 
 /* Navigation */
@@ -82,4 +86,164 @@ body {
     background: #f8f9fa;
     padding: 2rem 0;
     margin-top: 2rem;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Custom Bootstrap overrides */
+.btn-primary {
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-hover-bg: var(--bs-primary-dark);
+    --bs-btn-hover-border-color: var(--bs-primary-dark);
+    --bs-btn-active-bg: var(--bs-primary-dark);
+    --bs-btn-active-border-color: var(--bs-primary-dark);
+}
+
+.navbar-dark {
+    --bs-navbar-color: rgba(255, 255, 255, 0.85);
+    --bs-navbar-hover-color: #fff;
+    --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
+    --bs-navbar-active-color: #fff;
+    --bs-navbar-brand-color: #fff;
+    --bs-navbar-brand-hover-color: #fff;
+    --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Custom widget styles */
+.widget {
+    margin-bottom: 2rem;
+}
+
+.widget-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.widget ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.widget ul li {
+    margin-bottom: 0.5rem;
+}
+
+.widget ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Custom comment styles */
+.comment-list {
+    margin-bottom: 2rem;
+}
+
+.comment-list .children {
+    list-style: none;
+    padding-left: 2rem;
+    margin-top: 1rem;
+}
+
+.comment-body {
+    margin-bottom: 1.5rem;
+}
+
+.comment-meta {
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    font-weight: 500;
+}
+
+.comment-metadata {
+    font-size: 0.875rem;
+    color: var(--bs-gray-600);
+}
+
+.comment-content {
+    margin-top: 0.5rem;
+}
+
+.comment-respond {
+    margin-top: 2rem;
+}
+
+/* Custom pagination styles */
+.pagination {
+    margin-bottom: 0;
+}
+
+.page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.5rem;
+    margin: 0 0.25rem;
+    border-radius: var(--bs-border-radius);
+    background-color: var(--bs-white);
+    color: var(--bs-gray-700);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.page-numbers:hover {
+    background-color: var(--bs-gray-100);
+    color: var(--bs-gray-900);
+}
+
+.page-numbers.current {
+    background-color: var(--bs-primary);
+    color: var(--bs-white);
+}
+
+/* Custom search form styles */
+.search-form {
+    margin-bottom: 2rem;
+}
+
+.search-form .input-group {
+    max-width: 500px;
+}
+
+/* Custom archive styles */
+.archive-description {
+    margin-bottom: 2rem;
+}
+
+/* Custom 404 styles */
+.error-404 {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+/* Custom responsive styles */
+@media (max-width: 767.98px) {
+    .site-header {
+        position: sticky;
+        top: 0;
+    }
+
+    .navbar-collapse {
+        background-color: var(--bs-primary);
+        padding: 1rem;
+        border-radius: var(--bs-border-radius);
+        margin-top: 1rem;
+    }
+
+    .navbar-nav {
+        margin-top: 0.5rem;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.5rem 0;
+    }
+
+    .navbar-nav .nav-link:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 } 
