@@ -37,3 +37,23 @@ RUN { \
 # Limpa cache e arquivos temporários
 RUN rm -rf /var/www/html/wp-content/cache/* \
     && rm -rf /var/www/html/wp-content/uploads/cache/*
+
+# Install Node.js and npm
+RUN apt-get update && \
+    apt-get install -y curl gnupg && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Verify installations
+RUN node --version && npm --version
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy WordPress files
+COPY wordpress/ /var/www/html/
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html

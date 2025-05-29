@@ -635,6 +635,7 @@ class WolfxBackup {
                     throw new Exception("Erro ao obter estrutura da tabela $table_name: " . $wpdb->last_error);
                 }
 
+                fwrite($handle, "DROP TABLE IF EXISTS `$table_name`;\n");
                 fwrite($handle, "\n\n" . $create_table[1] . ";\n\n");
 
                 // Get table data
@@ -909,7 +910,7 @@ class WolfxBackup {
         }
 
         // Split SQL into individual queries
-        $queries = array_filter(array_map('trim', explode(';', $sql)));
+        $queries = $this->split_sql($sql);
 
         // Execute each query
         foreach ($queries as $query) {
@@ -920,6 +921,33 @@ class WolfxBackup {
                 throw new Exception('Erro ao executar query: ' . $wpdb->last_error);
             }
         }
+    }
+
+    private function split_sql($sql) {
+        $sql = str_replace("\r", "\n", $sql);
+        $lines = explode("\n", $sql);
+        $queries = array();
+        $query = '';
+        $in_string = false;
+
+        foreach ($lines as $line) {
+            if ($line == '' || preg_match('/^--/', $line) || preg_match('/^#/', $line)) {
+                continue;
+            }
+            $query .= $line . "\n";
+            $num_quotes = preg_match_all("/'/", $line, $matches);
+            if ($num_quotes % 2 && substr_count($line, "\\'") % 2 == 0) {
+                $in_string = !$in_string;
+            }
+            if (!$in_string && preg_match('/;[\040]*$/', trim($line))) {
+                $queries[] = trim($query);
+                $query = '';
+            }
+        }
+        if (trim($query) != '') {
+            $queries[] = trim($query);
+        }
+        return $queries;
     }
 
     private function restore_directory($src, $dst) {

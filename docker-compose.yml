@@ -1,6 +1,6 @@
 services:
   wordpress:
-    image: wordpress:latest
+    build: .
     container_name: wordpress
     platform: linux/amd64 
     restart: always
@@ -15,12 +15,14 @@ services:
       - ./wordpress:/var/www/html
     networks:
       - wordpress_network
+    depends_on:
+      bd_wp:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:80"]
       interval: 30s
       timeout: 10s
       retries: 3
-    command: /bin/bash -c "echo 'ServerName localhost' >> /etc/apache2/apache2.conf && apache2-foreground"
 
   bd_wp:
     image: mysql:5.7
@@ -37,10 +39,11 @@ services:
     networks:
       - wordpress_network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "wordpress", "-pwordpress_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
 networks:
   wordpress_network:
