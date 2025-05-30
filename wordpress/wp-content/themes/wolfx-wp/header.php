@@ -17,10 +17,10 @@
 <div id="page" class="site d-flex flex-column min-vh-100">
     <a class="skip-link visually-hidden" href="#primary"><?php esc_html_e('Skip to content', 'wolfx-wp'); ?></a>
 
-    <header id="masthead" class="site-header bg-primary shadow">
+    <header id="masthead" class="site-header shadow">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <div class="site-branding">
+            <div class="container-fluid ">
+                <div class="site-branding d-flex align-items-center">
                     <?php
                     if (has_custom_logo()) :
                         the_custom_logo();
@@ -28,7 +28,7 @@
                     ?>
                         <h1 class="site-title mb-0">
                             <a href="<?php echo esc_url(home_url('/')); ?>" 
-                               class="text-white text-decoration-none fw-bold fs-4" 
+                               class="text-white text-decoration-none" 
                                rel="home">
                                 <?php bloginfo('name'); ?>
                             </a>
@@ -37,7 +37,7 @@
                         $description = get_bloginfo('description', 'display');
                         if ($description || is_customize_preview()) :
                     ?>
-                        <p class="site-description text-white-50 mt-2 mb-0 small">
+                        <p class="site-description text-white-50 mb-0">
                             <?php echo $description; ?>
                         </p>
                     <?php
@@ -46,7 +46,7 @@
                     ?>
                 </div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -56,7 +56,7 @@
                         'theme_location' => 'primary',
                         'menu_id'        => 'primary-menu',
                         'container'      => false,
-                        'menu_class'     => 'navbar-nav ms-auto mb-2 mb-lg-0',
+                        'menu_class'     => 'navbar-nav ms-auto',
                         'fallback_cb'    => '__return_false',
                         'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                         'depth'          => 2,

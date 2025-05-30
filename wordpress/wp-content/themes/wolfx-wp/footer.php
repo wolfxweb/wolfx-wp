@@ -4,7 +4,7 @@
  */
 ?>
 
-    <footer id="colophon" class="site-footer bg-primary text-white mt-auto">
+    <footer id="colophon" class="site-footer text-white mt-auto">
         <div class="container py-5">
             <div class="row g-4">
                 <div class="col-md-4">
