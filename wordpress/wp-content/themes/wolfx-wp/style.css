@@ -35,11 +35,125 @@ body {
 
 /* Header */
 .site-header {
-    padding: 2rem 0;
+    padding: 0;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: relative;
     z-index: 1000;
+}
+
+/* Hero Section */
+.hero-section {
+    padding-top: 0;
+    padding-bottom: 4rem;
+    background-color: var(--bs-primary);
+    color: #ffffff;
+    margin-top: 0;
+}
+
+.hero-section h1 {
+    color: #ffffff;
+}
+
+.hero-section .lead {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-section .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #ffffff;
+}
+
+.hero-section .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: #ffffff;
+}
+
+/* Intro Section */
+.intro-section {
+    padding: 4rem 0;
+    background-color: #ffffff;
+}
+
+/* Services Section */
+.services-section {
+    background-color: #f8f9fa;
+}
+
+.services-section .card {
+    transition: transform 0.3s ease;
+}
+
+.services-section .card:hover {
+    transform: translateY(-5px);
+}
+
+/* CTA Sections */
+.cta-section, .final-cta-section {
+    background-color: var(--bs-primary);
+    color: #ffffff;
+}
+
+.cta-section h2, .final-cta-section h2 {
+    color: #ffffff;
+}
+
+.cta-section .lead, .final-cta-section .lead {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-section .btn-success, .final-cta-section .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #ffffff;
+}
+
+.cta-section .btn-success:hover, .final-cta-section .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: #ffffff;
+}
+
+/* Diferenciais Section */
+.diferenciais-section {
+    background-color: #f8f9fa;
+}
+
+.diferenciais-section .card {
+    transition: transform 0.3s ease;
+}
+
+.diferenciais-section .card:hover {
+    transform: translateY(-5px);
+}
+
+/* Depoimentos Section */
+.depoimentos-section {
+    background-color: #ffffff;
+}
+
+.depoimentos-section .card {
+    transition: transform 0.3s ease;
+}
+
+.depoimentos-section .card:hover {
+    transform: translateY(-5px);
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Contato Section */
+.contato-section {
+    background-color: #ffffff;
 }
 
 /* Navigation */
@@ -83,21 +197,52 @@ body {
 
 /* Footer */
 .site-footer {
-    background: #f8f9fa;
-    padding: 2rem 0;
+    background-color: #f8f9fa;
+    padding: 4rem 0 2rem;
     margin-top: 2rem;
-    position: relative;
-    z-index: 1000;
+}
+
+.footer-info h2 {
+    color: var(--bs-primary);
+    font-weight: 600;
+}
+
+.footer-info h3 {
+    color: var(--bs-gray-700);
+    font-weight: 500;
+}
+
+.footer-info p, .footer-info span {
+    color: var(--bs-gray-700);
+}
+
+.footer-info i {
+    color: var(--bs-primary);
+}
+
+.footer-map {
+    height: 100%;
+    min-height: 300px;
+}
+
+.footer-map iframe {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.site-footer .text-center {
+    color: var(--bs-gray-600);
+    font-size: 0.9rem;
 }
 
 /* Custom Bootstrap overrides */
 .btn-primary {
-    --bs-btn-bg: var(--bs-primary);
-    --bs-btn-border-color: var(--bs-primary);
-    --bs-btn-hover-bg: var(--bs-primary-dark);
-    --bs-btn-hover-border-color: var(--bs-primary-dark);
-    --bs-btn-active-bg: var(--bs-primary-dark);
-    --bs-btn-active-border-color: var(--bs-primary-dark);
+    --bs-btn-bg: #28a745;
+    --bs-btn-border-color: #28a745;
+    --bs-btn-hover-bg: #218838;
+    --bs-btn-hover-border-color: #1e7e34;
+    --bs-btn-active-bg: #1e7e34;
+    --bs-btn-active-border-color: #1e7e34;
 }
 
 .navbar-dark {
@@ -246,4 +391,85 @@ body {
     .navbar-nav .nav-link:not(:last-child) {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
+}
+
+/* Parceiros Section */
+.parceiros-section {
+    background-color: #ffffff;
+}
+
+.parceiros-section .text-center {
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.parceiros-section .text-center:hover {
+    transform: translateY(-5px);
+}
+
+.parceiros-section i {
+    color: var(--bs-primary);
+}
+
+.parceiros-section h3 {
+    margin: 1rem 0 0.5rem;
+    font-weight: 600;
+}
+
+.parceiros-section p {
+    color: var(--bs-gray-600);
+    margin-bottom: 0;
+}
+
+/* Tecnologias Section */
+.tecnologias-section {
+    background-color: #f8f9fa;
+}
+
+.tecnologias-section .text-center {
+    padding: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.tecnologias-section .text-center:hover {
+    transform: translateY(-5px);
+}
+
+.tecnologias-section i {
+    color: var(--bs-primary);
+}
+
+.tecnologias-section h3 {
+    margin: 0.5rem 0 0;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed !important;
+    bottom: 2rem !important;
+    left: 2rem !important;
+    z-index: 9999 !important;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    color: #ffffff;
+}
+
+.whatsapp-button .bi-whatsapp {
+    font-size: 2rem;
 } 
