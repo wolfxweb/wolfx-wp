@@ -10,7 +10,17 @@
                 <!-- Informações de Contato -->
                 <div class="col-md-6">
                     <div class="footer-info">
-                        <h2 class="mb-4">Wolx</h2>
+                        <?php
+                        if (has_custom_logo()) :
+                            $custom_logo_id = get_theme_mod('custom_logo');
+                            $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                            echo '<a href="' . esc_url(home_url('/')) . '" rel="home">';
+                            echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . '" class="img-fluid" style="height: 50px;">';
+                            echo '</a>';
+                        else :
+                        ?>
+                            <h2 class="mb-4">Wolx</h2>
+                        <?php endif; ?>
                         <div class="mb-3">
                             <h3 class="h5 mb-2"><i class="bi bi-geo-alt me-2"></i>Endereço</h3>
                             <p class="mb-0">Rua: Delamar jose silva, 180 - Kobrasol<br>

@@ -14,37 +14,40 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
 <div id="page" class="site d-flex flex-column min-vh-100">
     <a class="skip-link visually-hidden" href="#primary"><?php esc_html_e('Skip to content', 'wolfx-wp'); ?></a>
 
     <header id="masthead" class="site-header shadow">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid ">
-                <div class="site-branding d-flex align-items-center">
-                    <?php
-                    if (has_custom_logo()) :
-                        the_custom_logo();
-                    else :
-                    ?>
-                        <h1 class="site-title mb-0">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" 
-                               class="text-white text-decoration-none" 
-                               rel="home">
-                                <?php bloginfo('name'); ?>
-                            </a>
-                        </h1>
-                    <?php
-                        $description = get_bloginfo('description', 'display');
-                        if ($description || is_customize_preview()) :
-                    ?>
-                        <p class="site-description text-white-50 mb-0">
-                            <?php echo $description; ?>
-                        </p>
-                    <?php
-                        endif;
+            <div class="container py-3">
+                <?php
+                if (has_custom_logo()) :
+                    $custom_logo_id = get_theme_mod('custom_logo');
+                    $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                    echo '<a class="navbar-brand me-5" href="' . esc_url(home_url('/')) . '" rel="home">';
+                    echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . '" class="img-fluid" style="height: 70px;">';
+                    echo '</a>';
+                else :
+                ?>
+                    <h1 class="site-title mb-0">
+                        <a href="<?php echo esc_url(home_url('/')); ?>" 
+                           class="text-white text-decoration-none" 
+                           rel="home">
+                            <?php bloginfo('name'); ?>
+                        </a>
+                    </h1>
+                <?php
+                    $description = get_bloginfo('description', 'display');
+                    if ($description || is_customize_preview()) :
+                ?>
+                    <p class="site-description text-white-50 mb-0">
+                        <?php echo $description; ?>
+                    </p>
+                <?php
                     endif;
-                    ?>
-                </div>
+                endif;
+                ?>
 
                 <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
