@@ -1,6 +1,6 @@
 <?php
 /**
- * The main template file
+ * The template for displaying category archives
  */
 
 get_header();
@@ -8,7 +8,7 @@ get_header();
 
 <main id="primary" class="site-main">
     <?php
-    // Incluir o carrossel fora do container para ocupar largura total
+    // Incluir o carrossel
     get_template_part('template-parts/carousel');
     ?>
 

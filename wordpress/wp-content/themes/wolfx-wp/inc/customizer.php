@@ -324,6 +324,93 @@ function wolfx_wp_customize_register($wp_customize) {
             )
         )
     );
+
+    // Adicionar seção para o carrossel
+    $wp_customize->add_section(
+        'wolfx_wp_carousel',
+        array(
+            'title'    => __('Carrossel de Banners', 'wolfx-wp'),
+            'priority' => 35,
+        )
+    );
+
+    // Configurações para até 5 banners
+    for ($i = 1; $i <= 5; $i++) {
+        // Imagem do banner
+        $wp_customize->add_setting(
+            'carousel_image_' . $i,
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw',
+            )
+        );
+
+        $wp_customize->add_control(
+            new WP_Customize_Image_Control(
+                $wp_customize,
+                'carousel_image_' . $i,
+                array(
+                    'label'    => sprintf(__('Banner %d - Imagem', 'wolfx-wp'), $i),
+                    'section'  => 'wolfx_wp_carousel',
+                    'settings' => 'carousel_image_' . $i,
+                )
+            )
+        );
+
+        // Título do banner
+        $wp_customize->add_setting(
+            'carousel_title_' . $i,
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'sanitize_text_field',
+            )
+        );
+
+        $wp_customize->add_control(
+            'carousel_title_' . $i,
+            array(
+                'label'    => sprintf(__('Banner %d - Título', 'wolfx-wp'), $i),
+                'section'  => 'wolfx_wp_carousel',
+                'type'     => 'text',
+            )
+        );
+
+        // Descrição do banner
+        $wp_customize->add_setting(
+            'carousel_description_' . $i,
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'sanitize_textarea_field',
+            )
+        );
+
+        $wp_customize->add_control(
+            'carousel_description_' . $i,
+            array(
+                'label'    => sprintf(__('Banner %d - Descrição', 'wolfx-wp'), $i),
+                'section'  => 'wolfx_wp_carousel',
+                'type'     => 'textarea',
+            )
+        );
+
+        // Link do banner
+        $wp_customize->add_setting(
+            'carousel_link_' . $i,
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw',
+            )
+        );
+
+        $wp_customize->add_control(
+            'carousel_link_' . $i,
+            array(
+                'label'    => sprintf(__('Banner %d - Link', 'wolfx-wp'), $i),
+                'section'  => 'wolfx_wp_carousel',
+                'type'     => 'url',
+            )
+        );
+    }
 }
 add_action('customize_register', 'wolfx_wp_customize_register');
 
@@ -944,12 +1031,19 @@ function wolfx_wp_customize_css() {
         }
 
         .blog-filters .search-submit {
-            height: 48px;
-            padding: 0 1.5rem;
+            height: 40px !important;
+            width: 40px !important;
+            min-width: 40px !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 50% !important;
         }
 
         .blog-filters .search-submit i {
-            font-size: 1.1rem;
+            font-size: 1.1rem !important;
+            margin: 0 !important;
         }
 
         .page-title {
@@ -1311,6 +1405,207 @@ function wolfx_wp_customize_css() {
 
         .site-main .container .mb-4 .btn-primary:hover i {
             transform: translateX(-3px);
+        }
+
+        /* Estilos do Carrossel */
+        .carousel {
+            margin: 0;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        .carousel-item {
+            height: 300px;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        .carousel-caption {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 2rem;
+            text-align: left;
+        }
+
+        .carousel-caption h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .carousel-caption p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            max-width: 600px;
+        }
+
+        .carousel-indicators {
+            margin-bottom: 2rem;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 8px;
+            background: linear-gradient(90deg, var(--bs-accent) 0%, var(--bs-primary) 100%);
+            border: none;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .carousel-indicators button.active {
+            background: linear-gradient(90deg, var(--bs-accent) 0%, var(--bs-primary) 100%);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 10%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel:hover .carousel-control-prev,
+        .carousel:hover .carousel-control-next {
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(90deg, var(--bs-accent) 0%, var(--bs-primary) 100%);
+            border-radius: 50%;
+            padding: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .carousel-control-prev-icon:hover,
+        .carousel-control-next-icon:hover {
+            background: linear-gradient(90deg, var(--bs-primary) 0%, var(--bs-accent) 100%);
+            filter: brightness(0) invert(1) drop-shadow(0 0 2px rgba(255,255,255,0.5));
+        }
+
+        /* Estilo para o badge de categoria */
+        .badge.bg-primary {
+            background: linear-gradient(90deg, var(--bs-accent) 0%, var(--bs-primary) 100%) !important;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            color: #fff !important;
+        }
+
+        .badge.bg-primary:hover {
+            background: linear-gradient(90deg, var(--bs-primary) 0%, var(--bs-accent) 100%) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(63,182,242,0.2);
+            color: #fff !important;
+        }
+
+        .badge.bg-primary.text-decoration-none {
+            text-decoration: none !important;
+        }
+
+        /* Estilos da Página Inicial */
+        .hero-section {
+            background: linear-gradient(135deg, var(--bs-background) 0%, var(--bs-primary) 100%);
+            color: var(--bs-text);
+            padding: 6rem 0;
+        }
+
+        .hero-section h1 {
+            color: var(--bs-text);
+        }
+
+        .hero-section .lead {
+            color: var(--bs-text-secondary);
+        }
+
+        .services-section .card {
+            transition: transform 0.3s ease;
+        }
+
+        .services-section .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .services-section .bi {
+            color: var(--bs-accent);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-background) 100%);
+            color: var(--bs-text);
+            padding: 4rem 0;
+        }
+
+        .diferenciais-section .bi {
+            color: var(--bs-accent);
+        }
+
+        .parceiros-section img {
+            max-height: 60px;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .parceiros-section img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .tecnologias-section img {
+            max-height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .tecnologias-section img:hover {
+            transform: scale(1.1);
+        }
+
+        .depoimentos-section .avatar {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--bs-accent) 0%, var(--bs-primary) 100%);
+        }
+
+        .contato-section {
+            background-color: var(--bs-section-bg);
+        }
+
+        .contato-section h2 {
+            color: var(--bs-primary);
+        }
+
+        .contato-section h3 {
+            color: var(--bs-accent);
         }
     </style>
     <?php
