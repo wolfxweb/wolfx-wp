@@ -335,11 +335,11 @@ get_header();
     </section>
 
     <!-- Final CTA Section -->
-    <section class="final-cta-section py-5 bg-light">
+    <section class="final-cta-section py-5">
         <div class="container text-center">
             <h2 class="display-5 fw-bold mb-4">Pronto para Impulsionar Seus Resultados com Tecnologia?</h2>
             <p class="lead mb-4">Não espere mais para modernizar sua empresa e alcançar seus objetivos. Entre em contato conosco hoje mesmo e descubra como as soluções personalizadas da Wolfx podem fazer a diferença.</p>
-            <a href="#contato" class="btn btn-success btn-lg">Solicite um Orçamento Detalhado</a>
+            <a href="#contato" class="btn btn-primary btn-lg">Solicite um Orçamento Detalhado</a>
         </div>
     </section>
 </main>

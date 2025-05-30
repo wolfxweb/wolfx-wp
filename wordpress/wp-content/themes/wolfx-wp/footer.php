@@ -9,7 +9,7 @@
             <div class="row">
                 <!-- Informações de Contato -->
                 <div class="col-md-6">
-                    <div class="footer-info">
+                    <div class="footer-info text-white">
                         <?php
                         if (has_custom_logo()) :
                             $custom_logo_id = get_theme_mod('custom_logo');
@@ -22,20 +22,20 @@
                             <h2 class="mb-4">Wolx</h2>
                         <?php endif; ?>
                         <div class="mb-3">
-                            <h3 class="h5 mb-2"><i class="bi bi-geo-alt me-2"></i>Endereço</h3>
-                            <p class="mb-0">Rua: Delamar jose silva, 180 - Kobrasol<br>
+                            <h3 class="h5 mb-2 text-white"><i class="bi bi-geo-alt me-2 text-white"></i>Endereço</h3>
+                            <p class="mb-0 text-white">Rua: Delamar jose silva, 180 - Kobrasol<br>
                             São José - SC, 88102-110</p>
                         </div>
                         <div class="mb-3">
                             <div class="d-flex align-items-center">
-                                <h3 class="h5 mb-0"><i class="bi bi-telephone me-2"></i>Telefone:</h3>
-                                <span class="ms-2">(48) 98419-2339</span>
+                                <h3 class="h5 mb-0 text-white"><i class="bi bi-telephone me-2 text-white"></i>Telefone:</h3>
+                                <span class="ms-2 text-white">(48) 98419-2339</span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="d-flex align-items-center">
-                                <h3 class="h5 mb-0"><i class="bi bi-envelope me-2"></i>E-mail:</h3>
-                                <span class="ms-2">contato@wolx.com.br</span>
+                                <h3 class="h5 mb-0 text-white"><i class="bi bi-envelope me-2 text-white"></i>E-mail:</h3>
+                                <span class="ms-2 text-white">contato@wolx.com.br</span>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="text-center">
-                        <p class="mb-0">&copy; <?php echo date('Y'); ?> Wolx. Todos os direitos reservados.</p>
+                        <p class="mb-0 text-white">&copy; <?php echo date('Y'); ?> Wolx. Todos os direitos reservados.</p>
                     </div>
                 </div>
             </div>
